@@ -2,7 +2,7 @@ import React from "react";
 
 import DayListItem from "components/DayListItem";
 
-export default function DayList({days, day, setDay}) {
+export default function DayList({days, value, onChange}) {
   return (
     <>
       <ul>
@@ -12,8 +12,8 @@ export default function DayList({days, day, setDay}) {
               key={d.id} 
               name={d.name} 
               spots={d.spots} 
-              selected={d.name === day} 
-              setDay={() => setDay(d.name)}
+              selected={d.name === value} 
+              setDay={() => onChange(d.name)}
             />
           ))
         }
