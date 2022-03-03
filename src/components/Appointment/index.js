@@ -11,11 +11,16 @@ export default function Appointment(props) {
       return "No Appointments";
     }
     if (props.time) {
-      return `Appointment at ${props.time}`;
+      return `${props.time}`;
     }
   }
 
   return (
-    <article className="appointment">{showAppointments()}</article>
+    <>
+      <article className="appointment">
+        <Header time={showAppointments()} />
+        {props.interview ? <Show student={props.interview.student} interviewer={props.interview.interviewer.name} /> : <Empty />}
+      </article>
+    </>
   )
 }
