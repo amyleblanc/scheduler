@@ -92,8 +92,7 @@ export default function Application(props) {
             Object.values(appointments).map(appointment => (
               <Appointment 
                 key={appointment.id}
-                time={appointment.time}
-                interview={appointment.interview ? appointment.interview : null}
+                {...appointment}
               />
             ))
           }
