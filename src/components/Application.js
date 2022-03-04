@@ -48,6 +48,18 @@ export default function Application(props) {
   const [day, setDay] = useState("Monday");
   const [days, setDays] = useState([]);
 
+  useEffect(() => {
+    axios
+      .get("/api/days")
+      .then((response) => {
+        console.log("this =>", response.data);
+        setDays([...response.data]);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
   return (
     <main className="layout">
       <section className="sidebar">
