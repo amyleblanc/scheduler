@@ -50,7 +50,9 @@ export default function Application(props) {
     days: [],
     appointments: {}
   });
-  
+  const setDay = (day) => setState({ ...state, day });
+  const setDays = (days) => setState(prev => ({ ...prev, days }));
+
   useEffect(() => {
     axios
       .get("/api/days")
