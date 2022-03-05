@@ -50,7 +50,7 @@ export default function Application(props) {
     days: [],
     appointments: {}
   });
-
+  
   useEffect(() => {
     axios
       .get("/api/days")
@@ -73,8 +73,8 @@ export default function Application(props) {
         <hr className="sidebar__separator sidebar--centered" />
         <nav className="sidebar__menu">
           <DayList
-            days={days}
-            value={day}
+            days={state.days}
+            value={state.day}
             onChange={setDay}
           />
         </nav>
