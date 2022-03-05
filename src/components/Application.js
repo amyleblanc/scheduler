@@ -12,15 +12,19 @@ export default function Application(props) {
     appointments: {}
   });
   const setDay = (day) => setState({ ...state, day });
-  const setDays = (days) => setState(prev => ({ ...prev, days }));
 
   const dailyAppointments = [];
 
   useEffect(() => {
-    axios
-      .get("/api/days")
-      .then((response) => {
-        setDays([...response.data]);
+    Promise.all([
+      axios.get("/api/days"), 
+      axios.get("/api/appointments")
+    ]).then((all) => {
+        setState((prev) => ({
+          ...prev,
+          days: all[0].data,
+          appointments: all[1].data,
+        }));
       })
       .catch((error) => {
         console.log(error);
