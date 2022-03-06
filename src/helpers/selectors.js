@@ -2,14 +2,14 @@ export function getAppointmentsForDay(state, day) {
   const appointments = [];
   const result = [];
 
-  for (const obj of state.days) {
-    if (obj.name === day) {
-      appointments.push(...obj.appointments);
+  for (const item of state.days) {
+    if (item.name === day) {
+      appointments.push(...item.appointments);
     }
   }
 
-  for (const appointment in state.appointments) {
-    if (appointments.includes(state.appointments[appointment].id)) {
+  for (const appointment of appointments) {
+    if (state.appointments[appointment]) {
       result.push(state.appointments[appointment]);
     }
   }
