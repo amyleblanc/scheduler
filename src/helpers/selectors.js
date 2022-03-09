@@ -26,3 +26,14 @@ export function getInterview(state, interview) {
   }
   return null;
 };
+
+export function getInterviewersForDay(state, day) {
+  const interviewers = [];
+
+  for (const item of state.days) {
+    if (item.name === day) {
+      interviewers.push(...item.interviewers);
+    }
+  }
+  return interviewers;
+};
