@@ -37,7 +37,7 @@ export function getInterviewersForDay(state, day) {
     }
   }
 
-  interviewers.map(interviewer => {
+  interviewers.forEach(interviewer => {
     if (state.interviewers[interviewer]) {
       result.push(state.interviewers[interviewer]);
     }
