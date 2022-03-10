@@ -39,7 +39,7 @@ export default function Appointment(props) {
       <article className="appointment">
         <Header time={showAppointments()} />
         {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
-        {mode === SHOW && <Show student={props.interview.student} interviewer={props.interview.interviewer.name} />}
+        {mode === SHOW && props.interview && <Show student={props.interview.student} interviewer={props.interview.interviewer.name} />}
         {mode === CREATE && <Form id={props.id} time={props.time} interviewers={props.interviewers} onCancel={back} onSave={save} />}
       </article>
     </>
