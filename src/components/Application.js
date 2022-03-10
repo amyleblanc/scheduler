@@ -61,6 +61,29 @@ export default function Application() {
       });
   }
 
+  function cancelInterview(id) {
+    const nullInterview = {
+      ...state.appointments[id],
+      interview: null
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: nullInterview
+    };
+
+    return axios
+      .put(`/api/appointments/${id}`, nullInterview)
+      .then(() => {
+        setState({
+          ...state,
+          appointments
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
   return (
     <main className="layout">
       <section className="sidebar">
