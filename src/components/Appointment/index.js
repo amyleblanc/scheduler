@@ -6,6 +6,7 @@ import Empty from "components/Appointment/Empty";
 import Form from "components/Appointment/Form";
 import Status from "components/Appointment/Status";
 import Confirm from "components/Appointment/Confirm";
+import Error from "components/Appointment/Error";
 
 import "components/Appointment/styles.scss";
 
@@ -16,6 +17,7 @@ const SAVING = "SAVING";
 const DELETE = "DELETE";
 const CONFIRM = "CONFIRM";
 const EDIT = "EDIT";
+const ERROR_SAVE = "ERROR_SAVE";
 
 export default function Appointment(props) {
   function showAppointments() {
@@ -66,6 +68,7 @@ export default function Appointment(props) {
         {mode === DELETE && <Status message={"Deleting"} />}
         {mode === CONFIRM && <Confirm message={"Are you sure you would like to delete?"} id={props.id} onCancel={back} onConfirm={remove} />}
         {mode === EDIT && <Form id={props.id} time={props.time} interviewers={props.interviewers} student={props.interview.student} interviewer={props.interview.interviewer.name} onCancel={back} onSave={save} />}
+        {mode === ERROR_SAVE && <Error message={"Could not save appointment"} onClose={back} />}
       </article>
     </>
   )
