@@ -18,6 +18,7 @@ const DELETE = "DELETE";
 const CONFIRM = "CONFIRM";
 const EDIT = "EDIT";
 const ERROR_SAVE = "ERROR_SAVE";
+const ERROR_DELETE = "ERROR_DELETE";
 
 export default function Appointment(props) {
   function showAppointments() {
@@ -43,7 +44,8 @@ export default function Appointment(props) {
     .then(() => transition(SHOW))
     .catch((error) => {
       console.log(error);
-      transition(ERROR_SAVE, true)});
+      transition(ERROR_SAVE, true);
+    });
   }
 
   function confirm() {
@@ -72,6 +74,7 @@ export default function Appointment(props) {
         {mode === CONFIRM && <Confirm message={"Are you sure you would like to delete?"} id={props.id} onCancel={back} onConfirm={remove} />}
         {mode === EDIT && <Form id={props.id} time={props.time} interviewers={props.interviewers} student={props.interview.student} interviewer={props.interview.interviewer.name} onCancel={back} onSave={save} />}
         {mode === ERROR_SAVE && <Error message={"Could not save appointment"} onClose={back} />}
+        {mode === ERROR_DELETE && <Error message={"Could not delete appointment"} onClose={back} />}
       </article>
     </>
   )
