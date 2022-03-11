@@ -56,9 +56,6 @@ export default function Application() {
           appointments
         });
       })
-      .catch((error) => {
-        console.log(error);
-      });
   }
 
   function deleteInterview(id) {
