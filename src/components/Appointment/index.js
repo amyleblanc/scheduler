@@ -51,12 +51,16 @@ export default function Appointment(props) {
     .then(() => transition(EMPTY));
   }
 
+  function edit() {
+    transition(EDIT);
+  }
+
   return (
     <>
       <article className="appointment">
         <Header time={showAppointments()} />
         {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
-        {mode === SHOW && props.interview && <Show id={props.id} student={props.interview.student} interviewer={props.interview.interviewer.name} onDelete={confirm} />}
+        {mode === SHOW && props.interview && <Show id={props.id} student={props.interview.student} interviewer={props.interview.interviewer.name} onDelete={confirm} onEdit={edit} />}
         {mode === CREATE && <Form id={props.id} time={props.time} interviewers={props.interviewers} onCancel={back} onSave={save} />}
         {mode === SAVING && <Status message={"Saving"} />}
         {mode === DELETE && <Status message={"Deleting"} />}
