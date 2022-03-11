@@ -119,6 +119,7 @@ export default function Application() {
                 interview={interview}
                 interviewers={interviewers}
                 bookInterview={bookInterview}
+                deleteInterview={deleteInterview}
                 />
                 )
               })
