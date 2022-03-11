@@ -11,7 +11,7 @@ export default function useVisualMode(initial) {
     }
 
     if (!replace) {
-      setHistory([...history, newMode]);
+      setHistory(prev => ([...prev, newMode]));
       setMode(newMode);
     }
   };
@@ -21,9 +21,11 @@ export default function useVisualMode(initial) {
       let previousMode = history[history.length - 2];
       setMode(previousMode);
 
-      let newHistory = [...history];
-      newHistory.pop();
-      setHistory(newHistory);
+      setHistory((prev) => {
+        let newHistory = [...prev];
+        newHistory.pop();
+        return newHistory;
+      });
     }
   };
 
