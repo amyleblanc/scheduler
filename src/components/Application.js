@@ -61,22 +61,22 @@ export default function Application() {
       });
   }
 
-  function cancelInterview(id) {
+  function deleteInterview(id) {
     const nullInterview = {
       ...state.appointments[id],
       interview: null
     };
-    const appointments = {
+    const updatedAppointments = {
       ...state.appointments,
       [id]: nullInterview
     };
 
     return axios
-      .put(`/api/appointments/${id}`, nullInterview)
+      .delete(`/api/appointments/${id}`, nullInterview)
       .then(() => {
         setState({
           ...state,
-          appointments
+          updatedAppointments
         });
       })
       .catch((error) => {
