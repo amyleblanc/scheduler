@@ -53,9 +53,13 @@ export default function Appointment(props) {
   }
 
   function remove(id) {
-    transition(DELETE);
+    transition(DELETE, true);
     props.deleteInterview(id)
-    .then(() => transition(EMPTY));
+    .then(() => transition(EMPTY))
+    .catch((error) => {
+      console.log(error);
+      transition(ERROR_DELETE, true)
+    });
   }
 
   function edit() {
