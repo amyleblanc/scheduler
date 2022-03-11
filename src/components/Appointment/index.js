@@ -44,6 +44,12 @@ export default function Appointment(props) {
     transition(CONFIRM);
   }
 
+  function remove(id) {
+    transition(DELETE);
+    props.deleteInterview(id)
+    .then(() => transition(EMPTY));
+  }
+
   return (
     <>
       <article className="appointment">
