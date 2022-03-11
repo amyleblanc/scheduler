@@ -76,9 +76,6 @@ export default function Application() {
           updatedAppointments
         });
       })
-      .catch((error) => {
-        console.log(error);
-      });
   }
 
   return (
