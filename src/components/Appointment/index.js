@@ -40,6 +40,10 @@ export default function Appointment(props) {
     .then(() => transition(SHOW));
   }
 
+  function confirm() {
+    transition(CONFIRM);
+  }
+
   return (
     <>
       <article className="appointment">
