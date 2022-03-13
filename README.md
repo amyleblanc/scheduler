@@ -25,7 +25,7 @@ For sample data to run in the project, fork and clone the [scheduler-api](https:
 Follow the README.md instructions. This will involve a few steps, including:
 * installing dependencies
 * creating the database
-* *seeding the database
+* seeding the database
 * running the server
 
 ## Running Webpack Development Server
