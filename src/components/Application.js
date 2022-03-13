@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 import "components/Application.scss";
 import DayList from "./DayList";
@@ -49,13 +49,13 @@ export default function Application() {
             days={state.days}
             value={state.day}
             onChange={setDay}
-            />
+          />
         </nav>
         <img
           className="sidebar__lhl sidebar--centered"
           src="images/lhl.png"
           alt="Lighthouse Labs"
-          />
+        />
       </section>
       <section className="schedule">
         <ul>
