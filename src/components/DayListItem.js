@@ -10,15 +10,15 @@ export default function DayListItem(props) {
   });
 
   function formatSpots() {
-      if (!props.spots) {
-        return "no spots remaining";
-      }
+    if (!props.spots) {
+      return "no spots remaining";
+    }
 
-      if (props.spots === 1) {
-        return "1 spot remaining";
-      }
+    if (props.spots === 1) {
+      return "1 spot remaining";
+    }
 
-      return `${props.spots} spots remaining`;
+    return `${props.spots} spots remaining`;
   }
 
   return (
