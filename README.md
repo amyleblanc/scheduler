@@ -20,7 +20,7 @@ Install dependencies with `npm install`
 
 ## API Server
 
-For sample data to run in the project, fork and clone the [scheduler-api] (https://github.com/lighthouse-labs/scheduler-api) into a new directory.
+For sample data to run in the project, fork and clone the [scheduler-api](https://github.com/lighthouse-labs/scheduler-api) into a new directory.
 
 Follow the README.md instructions. This will involve a few steps, including:
 * installing dependencies
