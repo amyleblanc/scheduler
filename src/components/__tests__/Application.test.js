@@ -9,7 +9,8 @@ import {
   prettyDOM, 
   getAllByTestId, 
   getByAltText, 
-  getByPlaceholderText 
+  getByPlaceholderText, 
+  queryByText
 } from "@testing-library/react";
 
 import Application from "components/Application";
@@ -44,5 +45,9 @@ describe("Application", () => {
 
     await waitForElement(() => getByText(appointment, "Lydia Miller-Jones"));
     expect(getByText(appointment, "Lydia Miller-Jones")).toBeInTheDocument();
+
+    const days = getAllByTestId(container, "day");
+    const day = days.find(item => queryByText(item, "Monday"));
+    expect(getByText(day, "no spots remaining")).toBeInTheDocument();
   });
 });
