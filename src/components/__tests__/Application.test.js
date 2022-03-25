@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 
 import { 
   render, 
@@ -103,5 +104,33 @@ describe("Application", () => {
       );
       
     expect(getByText(day, "1 spot remaining")).toBeInTheDocument();
+  });
+
+  it("shows the save error when failing to save an appointment", async () => {
+    const { container } = render(<Application />);
+    const mockError = axios
+      .put
+      .mockRejectedValueOnce(new Error("Mock Error Displayed"));
+
+    await waitForElement(() => getByText(container, "Archie Cohen"));
+    const appointment = getAllByTestId(container, "appointment")[0];
+    
+    fireEvent.click(getByAltText(appointment, "Add"));
+    
+    fireEvent.change(getByPlaceholderText(appointment, "Enter Student Name"), {
+      target: { value: "Lydia Miller-Jones" }
+    });
+    
+    fireEvent.click(getByAltText(appointment, "Sylvia Palmer"));
+    
+    fireEvent.click(getByText(appointment, "Save"));
+
+    await mockError();
+        
+    await waitForElement(() => getByText(container, "Error"));
+    expect(getByText(container, "Could not save appointment")).toBeInTheDocument();
+    
+    fireEvent.click(getByAltText(appointment, "Close"));
+    await waitForElement(() => getByPlaceholderText(appointment, "Enter Student Name"));
   });
 });
