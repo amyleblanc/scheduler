@@ -134,4 +134,32 @@ describe("Application", () => {
     await waitForElement(() => getByPlaceholderText(appointment, "Enter Student Name"));
     expect(getByText(appointment, "Save")).toBeInTheDocument();
   });
+
+  it("shows the delete error when failing to delete an appointment", async () => {
+    const { container } = render(<Application />);
+    const mockError = axios
+      .delete
+      .mockRejectedValueOnce(new Error("Mock Error Displayed")
+    );
+    
+    await waitForElement(() => getByText(container, "Archie Cohen"));
+    
+    const appointment = getAllByTestId(container, "appointment").find(
+      (appointment) => queryByText(appointment, "Archie Cohen")
+    );
+    
+    fireEvent.click(getByAltText(appointment, "Delete"));
+    expect(getByText(appointment, "Confirm")).toBeInTheDocument();
+    
+    fireEvent.click(getByText(appointment, "Confirm"));
+    
+    await mockError();
+    
+    await waitForElement(() => getByText(container, "Error"));
+    expect(getByText(container, "Could not delete appointment")).toBeInTheDocument();
+    
+    fireEvent.click(getByAltText(appointment, "Close"));
+    await waitForElement(() => getByText(appointment, "Archie Cohen"));
+    expect(getByAltText(appointment, "Delete")).toBeInTheDocument();
+  });
 });
